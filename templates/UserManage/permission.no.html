@@ -1,0 +1,10 @@
+{% extends "common/base.nav.html" %}
+
+{% block title %}
+    No Permission
+{% endblock %}
+
+{% block content %}
+    <p>很悲催的通知你，你没有权限，请联系管理员。 {{ request.path }}</p>
+
+{% endblock %}

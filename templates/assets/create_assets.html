@@ -1,0 +1,80 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+    新建资产
+{% endblock %}
+
+
+
+{% block content %}
+
+    {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
+
+    <form action="" method="post">
+        <div class="field">
+            {# 自动生成的默认错误信息显示 #}
+            {# 会被翻译成：<ul class="errorlist"><li>这个字段是必填项。</li></ul> #}
+            {{ form.type.errors }}
+            <label for="id_type">类型:</label>
+            {{ form.type }}
+            {# 自定义的错误信息显示 #}
+            {% if form.type.errors%}
+            <label for="id_self_def_error_info" style="color: red;">
+                *自定义错误信息：主题不能为空
+            </label>
+            {% endif %}
+
+        </div>
+        <div class="box-body">
+            {{ form.name.errors }}
+            <label for="id_name">名称:</label>
+            {{ form.name }}
+        </div>
+        <div class="field">
+            {{ form.config_time.errors }}
+            <label for="id_config_time">配置时间:</label>
+            {{ form.config_time }}
+        </div>
+
+        <div class="field">
+            {{ form.bill.errors }}
+            <label for="id_bill">是否有发票:</label>
+            {{ form.bill }}
+        </div>
+
+
+        <div class="field">
+            {{ form.status.errors }}
+            <label for="id_status">状态:</label>
+            {{ form.status }}
+        </div>
+
+        <div class="field">
+            {{ form.recipients.errors }}
+            <label for="id_recipients">领用情况:</label>
+            {{ form.recipients }}
+        </div>
+
+
+        <div class="field">
+            {{ form.config_mod.errors }}
+            <label for="id_config_mod">配置更改:</label>
+            {{ form.config_mod }}
+        </div>
+
+        <div class="field">
+            {{ form.scrap.errors }}
+            <label for="id_scrap">报废:</label>
+            {{ form.scrap }}
+        </div>
+
+
+        <input type="submit" value="提交">
+    </form>
+
+{% endblock %}
