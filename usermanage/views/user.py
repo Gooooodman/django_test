@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import auth
 from django.contrib.auth import get_user_model
 from usermanage.forms import LoginUserForm,ChangePasswordForm,AddUserForm,EditUserForm
+from usermanage.models import User
 
 @csrf_exempt
 def LoginUser(request):
@@ -24,30 +25,25 @@ def LoginUser(request):
         next = request.GET['next']
     else:
         next = '/'
-    print "next:%s"%next
+
     if request.method == "POST":
         #form = LoginUserForm(request, data=request.POST)
         form = LoginUserForm(request,data=request.POST)
-        print request.user
-        print request.POST
-        print "is_valid: %s"%(form.is_valid())
+
         if form.is_valid():
             cd = form.cleaned_data
-            print cd
             auth.login(request, form.get_user())
-            print "auth.login: %s"%(request.POST['next'])
             return HttpResponseRedirect(request.POST['next'])
             #return HttpResponseRedirect(reverse('index'))
     else:
         form = LoginUserForm(request)
-    print "Method: %s"%(request.method)
+
     kwvars = {
         'request':request,
         'form':form,
         'next':next,
     }
     #print form
-    print  request.user
     return render_to_response('UserManage/login.html',kwvars,RequestContext(request))
 
 @login_required
@@ -76,8 +72,8 @@ def ChangePassword(request):
 @PermissionVerify()
 def ListUser(request):
 
-    mList = get_user_model().objects.all()
-
+    #mList = get_user_model().objects.all()
+    mList = User.objects.all()
     #分页功能
     lst = SelfPaginator(request,mList, 20)
 

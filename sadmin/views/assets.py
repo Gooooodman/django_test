@@ -12,11 +12,12 @@ from django.shortcuts import render_to_response,RequestContext,render,get_object
 
 from django.contrib.auth.decorators import login_required
 
-def index(request):
-    kwvars = {
-        'request':request,
-    }
-    return render_to_response('index.html',kwvars,RequestContext(request))
+# @login_required
+# def index(request):
+#     kwvars = {
+#         'request':request,
+#     }
+#     return render_to_response('index.html',kwvars,RequestContext(request))
 
 
 
@@ -27,12 +28,12 @@ def AssetsList(request):
     all_assets = Assets.objects.all()
     #分页
     lst = SelfPaginator(request,all_assets, 10)
-    return render_to_response('assets/assets_list.html', {'all_host_list': all_assets,'Page':lst})
+    return render_to_response('assets/assets_list.html', {'all_host_list': all_assets,'Page':lst},RequestContext(request))
 
 @csrf_exempt
-def CreateAssets(requst):
-    if requst.method == 'POST':
-        form = AssetsListForm(requst.POST)
+def CreateAssets(request):
+    if request.method == 'POST':
+        form = AssetsListForm(request.POST)
         if form.is_valid():
             form.save()
             cd = form.cleaned_data
@@ -43,7 +44,7 @@ def CreateAssets(requst):
         form = AssetsListForm()
     #return render(request, 'create_host.html', locals())
     #print form
-    return render_to_response('assets/create_assets.html', {'form': form})
+    return render_to_response('assets/create_assets.html', {'form': form},RequestContext(request))
 
 @csrf_exempt
 def EditAssets(request,assets_id):
@@ -63,8 +64,9 @@ def EditAssets(request,assets_id):
             #return HttpResponseRedirect(reverse('mtime:post_detail', args=(post.pk,)))
     else:
         form = AssetsListForm(instance=a)
-    return render_to_response('assets/create_assets.html', {'form': form})
+    return render_to_response('assets/create_assets.html', {'form': form},RequestContext(request))
 
+@login_required
 def DelAssets(request,assets_id):
     a = get_object_or_404(Assets, pk=assets_id)
     a.delete()
