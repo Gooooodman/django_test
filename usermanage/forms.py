@@ -21,10 +21,8 @@ class LoginUserForm(forms.Form):
     def clean_password(self):
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
-        #print username,password
         if username and password:
             self.user_cache = auth.authenticate(username=username,password=password)
-            #print self.user_cache
             if self.user_cache is None:
                 raise forms.ValidationError(u'账号密码不匹配')
             elif not self.user_cache.is_active:
@@ -32,7 +30,6 @@ class LoginUserForm(forms.Form):
         return self.cleaned_data
 
     def get_user(self):
-        #print self.user_cache
         return self.user_cache
 
 class ChangePasswordForm(forms.Form):

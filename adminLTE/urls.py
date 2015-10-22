@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^$',Home),
     url(r'^sadmin/', include('sadmin.urls',namespace='sadmin')),
     url(r'^accounts/',include('usermanage.urls',namespace='UserManage')),
+    url(r'^book/',include('book.urls',namespace='Book')),
 ]

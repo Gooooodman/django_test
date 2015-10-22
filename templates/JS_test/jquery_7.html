@@ -1,0 +1,117 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+    jQuery 获取并设置 CSS 类
+{% endblock %}
+
+
+{% block head %}
+
+    <style type="text/css">
+    .important
+    {
+    font-weight:bold;
+    font-size:xx-large;
+    }
+    .blue
+    {
+    color:blue;
+    }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+
+
+    <h1 id="h1">标题 1</h1>
+    <h2 id="h2">标题 2</h2>
+    <p id="p1">这是一个段落。</p>
+    <p id="p2">这是另一个段落。</p>
+    <div id="div1">这是非常重要的文本！</div>
+    <br>
+    <button id="btn">向元素添加类</button>
+
+
+    <h2>CSS属性</h2>
+    <p id="p3" style="background-color:#ff0000">这是一个段落。</p>
+    <p id="p4" style="background-color:#00ff00">这是一个段落。</p>
+    <p id="p5" style="background-color:#0000ff">这是一个段落。</p>
+    <button id="btn2">返回 p 元素的背景色</button>
+
+
+
+
+    <div id="div2" style="height:200px;width:300px;padding:10px;margin:3px;border:1px solid blue;background-color:lightblue;"></div>
+    <br>
+    <button id="btn3">显示 div 的尺寸</button>
+    <p id="p6">width() - 返回元素的宽度。</p>
+    <p id="p7">height() - 返回元素的高度。</p>
+
+
+
+
+
+    <button id="btn4">显示文档和窗口的尺寸</button>
+    <button id="btn5">设置div2的宽度与高度</button>
+
+
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+$(document).ready(function(){
+  $("#btn").click(function(){
+    //$("#h1,#h2,#p1").addClass("blue");
+      $("#h1,#h2,#p1").toggleClass("blue"); //切换
+    $("#div1").addClass("important blue"); //增加多个类
+  });
+
+    $("#btn2").click(function(){
+        //alert("P 背景色: " + $('#p3,#p4,#p5').css("background-color"));
+        $('#p3').css("background-color","yellow");//设置
+        $('#p4').css({"background-color":"blue"});//设置
+        $('#p5').css({"background-color":"yellow","font-size":"200%"});//字典设置多个值
+    });
+
+
+
+      $("#btn3").click(function(){
+{#        var txt="";#}
+{#        txt+="Width of div: " + $("#div2").width() + "</br>";#}
+{#        txt+="Height of div: " + $("#div2").height();#}
+{#        $("#div2").html(txt);#}
+
+            var txt="";
+            txt="不包括边框"+ "</br>";
+             txt+="Width of div: " + $("#div2").width() + "</br>";
+            txt+="Height of div: " + $("#div2").height()  + "</br>";
+          txt+="包括边框" + "</br>";
+          txt+="Inner width: " + $("#div2").innerWidth() + "</br>";
+          txt+="Inner height: " + $("#div2").innerHeight();
+          $("#div2").html(txt);
+      });
+
+
+      $("#btn4").click(function(){
+        var txt="";
+        txt+="Document width/height: " + $(document).width();
+        txt+="x" + $(document).height() + "\n";
+        txt+="Window width/height: " + $(window).width();
+        txt+="x" + $(window).height();
+        alert(txt);
+      });
+
+    $("#btn5").click(function(){
+      $("#div2").width(800).height(800);
+    });
+
+});
+</script>
+
+
+{% endblock %}

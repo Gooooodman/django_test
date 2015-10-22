@@ -1,11 +1,15 @@
 # -*- coding: utf-8 -*-
 
+import os
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render,render_to_response,RequestContext
 from sadmin.models import Assets
 from adminLTE.common.CommonPaginator import SelfPaginator
 from sadmin.forms import AssetsListForm
-from django.http import HttpResponse,Http404,HttpResponseRedirect
+from django.http import Http404,HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response,RequestContext,render,get_object_or_404,redirect
 # Create your views here.
@@ -36,7 +40,7 @@ def CreateAssets(request):
         form = AssetsListForm(request.POST)
         if form.is_valid():
             form.save()
-            cd = form.cleaned_data
+            #cd = form.cleaned_data
             return HttpResponseRedirect(reverse('sadmin:assetslist'))
         else:
             print '数据不符合要求'
@@ -75,6 +79,71 @@ def DelAssets(request,assets_id):
 
 
 
+
+
+def jquery_1(request):
+    #tem='JS_test/jquery_%s.html'%id
+    return render(request,"JS_test/jquery_index.html")
+
+
+
+def jquery_2(request,id):
+    tem='JS_test/jquery_%s.html'%id
+    return render(request,tem)
+
+
+
+def jquery_3(request):
+    tem='JS_test/demo_test.txt'
+    return render(request,tem)
+
+
+
+
+def jquery_4(request):
+    tem='JS_test/demo_test_post.asp'
+    return render(request,tem)
+
+#
+# def ajax_1(request,id):
+#     tem='ajax/ajax_%s.html'%id
+#     return render(request,tem)
+
+
+
+
+def add(request):
+    a = request.GET['a']
+    b = request.GET['b']
+    a = int(a)
+    b = int(b)
+    #HttpResponse 返回一个结果传递给ret
+    return HttpResponse(str(a+b))
+
+
+
+
+
+import json
+
+def ajax_list(request):
+    a = range(100)
+    #print json.dumps(a)
+    return HttpResponse(json.dumps(a), content_type='application/json')
+
+def ajax_dict(request):
+    name_dict = {'twz': 'Love python and Django', 'zqxt': 'I am teaching Django'}
+    #print json.dumps(name_dict)
+    return HttpResponse(json.dumps(name_dict), content_type='application/json')
+
+
+
+def ajax_read_file(request):
+    filename = '/data/1.txt'
+    with open(filename,'r') as f:
+        # data = f.read()
+        return HttpResponse(f.read())
+        # return  HttpResponse(f.readlines())
 
 
 

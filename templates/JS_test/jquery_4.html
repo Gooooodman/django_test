@@ -1,0 +1,61 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+    jQuery 效果 - 动画
+{% endblock %}
+
+
+
+{% block content %}
+
+<button>开始动画</button>
+<p>默认情况下，所有 HTML 元素的位置都是静态的，并且无法移动。如需对位置进行操作，记得首先把元素的 CSS position 属性设置为 relative、fixed 或 absolute。</p>
+{#<div id='div1' style="background:#98bf21;height:100px;width:100px;position:absolute;">#}
+{#</div>#}
+
+
+   <div id='div2' style="background:#98bf21;height:100px;width:200px;position:absolute;">HELLO</div>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+
+{#    $("#div1").animate({#}
+{#        left:'500px',#}
+{#        opacity:'0.5',#}
+{#        height:'+=150px', //相对 +=  -=#}
+{#        width:'+=150px',#}
+{#        height:'toggle' //动画值设置为 "show"、"hide" 或 "toggle"：开关#}
+{#    });#}
+
+
+      //多个动画
+{#    var div=$("#div1");#}
+{#    div.animate({height:'300px',opacity:'0.4'},"slow");#}
+{#    div.animate({width:'300px',opacity:'0.8'},"slow");#}
+{#    div.animate({height:'100px',opacity:'0.4'},"slow");#}
+{#    div.animate({width:'100px',opacity:'0.8'},"slow");#}
+
+      //控制文字
+    var div2=$("#div2");
+    div2.animate({left:'500px'},"slow");
+    div2.animate({fontSize:'3em'},"slow");
+
+
+
+
+  });
+
+
+});
+</script>
+
+
+{% endblock %}

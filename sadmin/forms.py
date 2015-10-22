@@ -3,7 +3,6 @@
 __author__ = "lupuxiao" 
 
 from django import forms
-from django.contrib import auth
 from .models import Assets
 
 #资产

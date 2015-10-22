@@ -1,0 +1,204 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+ jQuery 遍历 - 过滤
+{% endblock %}
+
+
+{% block head %}
+
+
+{% endblock %}
+
+
+
+
+{% block content %}
+
+    <div class="bg-green">
+缩写搜索元素的范围
+
+三个最基本的过滤方法是：first(), last() 和 eq()，它们允许您基于其在一组元素中的位置来选择一个特定的元素。
+
+其他过滤方法，比如 filter() 和 not() 允许您选取匹配或不匹配某项指定标准的元素。
+</div>
+
+
+
+    <h1>欢迎来到我的主页</h1>
+    <div id="div1" >
+    <p id="p1">这是 div1 中的一个段落。</p>
+    <p id="p2" class="bg-orange">这是 div1 中的二个段落。</p>
+    </div>
+
+    <div>
+    <p>这是 div 中的另一个段落。</p>
+    </div>
+
+    <p>这也是段落。</p>
+
+
+
+
+
+{#//ajax#}
+<h3 id="test">请点击下面的按钮，通过 jQuery AJAX 改变这段文本。</h3>
+<button id="btn1" type="button">获得外部的内容</button>
+
+
+<div id="div2"><h2>使用 jQuery AJAX 来改变文本</h2></div>
+<button id="btn2">获得外部内容</button>
+
+
+</br>
+    <button id="btn3">向页面发送 HTTP GET 请求，然后获得返回的结果</button>
+
+    </br>
+    <button id="button4">向页面发送 HTTP POST 请求，并获得返回的结果</button>
+
+
+
+
+
+    <div id="myDiv"><h2>通过 AJAX 改变文本</h2></div>
+<button id="b01" type="button">改变内容</button>
+
+
+</br>
+
+   <h4> <p>################### AJAX 请输入两个数字#####################</p></h4>
+<form action="" method="get">
+    a: <input type="text" id="a" name="a"> <br>
+    b: <input type="text" id="b" name="b"> <br>
+    <p>result: <span id='result'></span></p>
+    <button type="button" id='sum'>提交</button>
+</form>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+{% block js %}
+
+
+<script>
+$(document).ready(function(){
+{#  $("#div1 p").first().css("background-color","yellow"); //#div1 下面的第一个p#}
+{#    $("#div1 p").last().css("background-color","yellow"); //#div1 最后p#}
+{#    $("#div1 p").eq(1).css("background-color","green"); //#div1 下面p 为索引为1的元素#}
+{#    $("#div1").filter(".bg-orange").css("background-color","yellow"); //对第一级class 为 bg-orange#}
+    $("#div1").not(".bg-orange").css("background-color","yellow"); //#div1 下不是class=bg-orange
+
+//#######################################  ajax部分  ########################################################################
+
+{#    可选的 callback 参数规定当 load() 方法完成后所要允许的回调函数。回调函数可以设置不同的参数：#}
+{##}
+{#    responseTxt - 包含调用成功时的结果内容#}
+{#    statusTXT - 包含调用的状态#}
+{#    xhr - 包含 XMLHttpRequest 对象#}
+
+
+
+      $("#btn2").click(function(){
+{#        $('#test').load('../demo_test.txt');#}//加载所有
+{#           $('#test').load('../demo_test.txt #p1'); //加载指定 元素#}
+            $("#div2").load("../demo_test.txt",function(responseTxt,statusTxt,xhr){
+            if(statusTxt=="success")
+              alert("外部内容加载成功！");
+            if(statusTxt=="error")
+              alert("Error: "+xhr.status+": "+xhr.statusText);
+  });
+
+
+
+      });
+
+
+    //等同于$('#test').load('../demo_test.txt')
+           $("#b01").click(function(){
+  htmlobj=$.ajax({url:"../demo_test.txt",async:false});
+  $("#myDiv").html(htmlobj.responseText);
+  });
+
+{#    语法：#}
+{##}
+{#$.get(URL,callback);#}
+{##}
+{#必需的 URL 参数规定您希望请求的 URL。#}
+{##}
+{#可选的 callback 参数是请求成功后所执行的函数名。#}
+
+{#$.post() 方法通过 HTTP POST 请求从服务器上请求数据。#}
+{#语法：#}
+{##}
+{#$.post(URL,data,callback);#}
+{##}
+{#必需的 URL 参数规定您希望请求的 URL。#}
+{##}
+{#可选的 data 参数规定连同请求发送的数据。#}
+{##}
+{#可选的 callback 参数是请求成功后所执行的函数名。#}
+
+
+
+$("#btn3").click(function(){
+    $.get("../demo_test.txt",function(data,status){
+      alert("数据：" + data + "\n状态：" + status);
+    });
+  });
+
+
+
+$("#button4").click(function(){
+  $.post("../demo_test_post.asp",
+  {
+    name:"Donald Duck",
+    city:"Duckburg"
+  },
+  function(data,status){
+    alert("Data: " + data + "\nStatus: " + status);
+  });
+});
+
+
+
+    //ajax  运算
+
+      $("#sum").click(function(){
+        var a = $("#a").val();
+        var b = $("#b").val();
+
+        $.get("{% url 'sadmin:add' %}",{'a':a,'b':b}, function(ret){
+            $('#result').html(ret);
+        })
+      });
+
+
+
+
+
+
+
+
+
+
+});
+</script>
+
+
+
+
+{% endblock %}

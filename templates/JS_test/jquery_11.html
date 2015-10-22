@@ -1,0 +1,73 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+ jQuery 遍历 - 过滤
+{% endblock %}
+
+
+{% block head %}
+
+
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+</br>
+
+   <h4> <p>################### AJAX 请输入两个数字#####################</p></h4>
+<form action="" method="get">
+    a: <input type="text" id="a" name="a"> <br>
+    b: <input type="text" id="b" name="b"> <br>
+    <p>result: <span id='result'></span></p>
+    <button type="button" id='sum'>提交</button>
+</form>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+{% block js %}
+
+
+<script>
+$(document).ready(function(){
+
+
+    //ajax  运算
+
+      $("#sum").click(function(){
+        var a = $("#a").val();
+        var b = $("#b").val();
+
+        $.get("{% url 'sadmin:add' %}",{'a':a,'b':b}, function(ret){
+            $('#result').html(ret);
+        })
+      });
+
+
+
+
+});
+</script>
+
+
+
+
+{% endblock %}

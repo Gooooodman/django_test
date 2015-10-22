@@ -1,0 +1,27 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+    jqery 测试
+{% endblock %}
+
+
+
+{% block content %}
+    <h3><a href="{% url 'sadmin:jquery_2' 1 %}">掩藏</a></h3>
+    <h3><a href="j{% url 'sadmin:jquery_2' 2 %}">淡入淡出</a></h3>
+    <h3><a href="{% url 'sadmin:jquery_2' 3 %}">滑动</a></h3>
+    <h3><a href="{% url 'sadmin:jquery_2' 4 %}">动画</a></h3>
+    <h3><a href="{% url 'sadmin:jquery_2' 5 %}">停止动画</a></h3>
+    <h3><a href="{% url 'sadmin:jquery_2' 6 %}">内容和属性</a></h3>
+    <h3><a href="{% url 'sadmin:jquery_2' 7 %}">设置 CSS 类</a></h3>
+    <h3><a href="{% url 'sadmin:jquery_2' 8 %}">jQuery 遍历</a></h3>
+    <h3><a href="{% url 'sadmin:jquery_2' 9 %}">jQuery 遍历 - 同胞</a></h3>
+    <h3><a href="{% url 'sadmin:jquery_2' 10 %}">jQuery 遍历 - 过滤 -------- AJAX</a></h3>
+    <h3><a href="{% url 'sadmin:jquery_2' 11 %}">jQuery AJAX</a></h3>
+	<h3><a href="{% url 'sadmin:jquery_2' 12 %}">jQuery AJAX--list--dict</a></h3>
+	<h3><a href="{% url 'sadmin:jquery_2' 13 %}">jQuery AJAX 定时刷新</a></h3>
+{#    <h3><a href="{% url 'sadmin:ajax_1' 1 %}">jQuery AJAX</a></h3>#}
+{% endblock %}
+
+

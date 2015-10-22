@@ -1,0 +1,39 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+ jQuery AJAX
+{% endblock %}
+
+
+{% block head %}
+
+
+{% endblock %}
+
+
+
+
+{% block content %}
+
+<h2>ajax 定时刷新 </h2>
+<div id="div" class="bg-blue">加载..</div>
+
+{% endblock %}
+
+
+{% block js %}
+
+    <script>
+        function load(){
+            $.get("{% url 'sadmin:ajax_read_file' %}",function(data){
+                        $("#div").html(data);
+{#                            alert(data);#}
+{#                            console.log(data);#} //打印到控制台
+                    });
+            };
+            $(document).ready(function(){
+             setInterval(load, 5000);
+            });
+    </script>
+{% endblock %}

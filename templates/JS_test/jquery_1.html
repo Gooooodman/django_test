@@ -1,0 +1,110 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+    jqery 测试
+{% endblock %}
+
+{% block head %}
+<style type="text/css">
+div.ex
+{
+background-color:#e5eecc;
+padding:7px;
+border:solid 1px #c3c3c3;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="bg-green" id="intro">
+    <h2 id="branding">This is a heading</h2>
+    <p  class="intro">This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <button id="button" type="button">Click me</button>
+    </div>
+
+    <p id="p1">如果点击“隐藏”按钮，我就会消失。</p>
+    <button id="hide" type="button">隐藏</button>
+    <button id="show" type="button">显示</button>
+    <button id="hide_show" type="button">切换</button>
+
+
+
+<h3>中国办事处</h3>
+<div class="ex">
+<button class="hide1" type="button">隐藏</button>
+<p>联系人：张先生<br />
+北三环中路 100 号<br />
+北京</p>
+</div>
+
+<h3>美国办事处</h3>
+<div class="ex">
+<button class="hide1" type="button">隐藏</button>
+<p>联系人：David<br />
+第五大街 200 号<br />
+纽约</p>
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block js %}
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        //("button")代表所有的button
+{#        $("#button").click(function(){#}
+{#        $("p").hide(1000);//掩藏所有p#}
+    {#        $('#branding').hide(); //掩藏id = branding 的元素#}
+    {#        $(this).hide(); //隐藏当前的 HTML 元素。#}
+{#            $("p").css("background-color","red"); //所有 p 元素的背景颜色更改为红色：#}
+{#            $("p.intro").hide(); //所有class intro 的 p标签#}
+{#            $("div#intro.bg-green").hide();#}
+
+{#        });#}
+
+
+
+{#        //点击p 掩藏#}
+{#         $("p").click(function(){#}
+{#          $(this).hide();#}
+{#          });#}
+
+
+           $('p').dblclick(function(){
+              $(this).hide();
+           });
+
+        //显示与掩藏
+          $("#hide").click(function(){
+          $("p").hide(1000);
+          });
+          $("#show").click(function(){
+          $("p").show(1000);
+          });
+          $("#hide_show").click(function(){
+          $("p").toggle(1000);
+          });
+
+
+          $(".ex .hide1").click(function(){
+            $(this).parents(".ex").hide("slow");
+          });
+
+
+    });
+    </script>
+
+
+{% endblock %}

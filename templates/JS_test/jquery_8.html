@@ -1,0 +1,73 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+    jQuery 遍历
+{% endblock %}
+
+
+{% block content %}
+
+    <style>
+.ancestors *
+{
+display: block;
+border: 2px solid lightgrey;
+color: lightgrey;
+padding: 5px;
+margin: 15px;
+}
+</style>
+
+
+<div id="div1" class="ancestors">
+  <div id="div2" style="width:500px;">div (曾祖父)
+    <ul>ul (祖父)
+      <li>li (直接父)
+        <span id="span1">span</span>
+      </li>
+    </ul>
+  </div>
+
+  <div id="div3" style="width:500px;">div (祖父)
+    <p>p (直接父)
+        <span id="span2">span</span>
+      </p>
+  </div>
+</div>
+
+
+ <div id='div4' class="descendants" style="width:500px;">div (当前元素)
+  <p class="1">p (子)
+    <span>span (孙)</span>
+  </p>
+  <p class="2">p (子)
+    <span>span (孙)</span>
+  </p>
+</div>
+
+
+{% endblock %}
+
+
+{% block js %}
+
+
+
+
+<script>
+$(document).ready(function(){
+{#  $("#span1,#span2").parent().css({"color":"red","border":"2px solid red"}); //对上一级进行css配置#}
+{#    $("#span1,#span2").parents().css({"color":"red","border":"2px solid red"}); //对所有的进行配置#}
+{#    $("#span1,#span2").parentsUntil("div").css({"color":"red","border":"2px solid red"}); // 在span 与div 之间的 进行配置#}
+
+{#    $("#div2").children().css({"color":"green","border":"2px solid green"}); // 对子类进行配置#}
+{#    $("#div4").children("p.1").css({"color":"red","border":"2px solid red"}); //对div4下属于class=1 的 p  进行配置#}
+{#    $("#div4").find("span").css({"color":"red","border":"2px solid green"});//div4下找到所有span 进行配置#}
+    $("#div4").find("*").css({"color":"red","border":"2px solid green"});//找到所有的后代
+});
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+    jQuery 遍历-同胞
+{% endblock %}
+
+
+{% block head %}
+<style>
+.siblings *
+{
+display: block;
+border: 2px solid lightgrey;
+color: lightgrey;
+padding: 5px;
+margin: 15px;
+}
+</style>
+
+{% endblock %}
+
+
+
+
+{% block content %}
+    <div class="bg-green">
+        <h5>siblings() 方法返回被选元素的所有同胞元素。</h5>
+        <h5>next() 方法返回被选元素的下一个同胞元素。</h5>
+        <h5>nextAll() 方法返回被选元素的所有跟随的同胞元素。</h5>
+        <h5>nextUntil() 方法返回介于两个给定参数之间的所有跟随的同胞元素。</h5>
+        <h5>prev(), prevAll() 以及 prevUntil() 方法的工作方式与上面的方法类似，只不过方向相反而已：它们返回的是前面的同胞元素（在 DOM 树中沿着同胞元素向后遍历，而不是向前）。
+        </h5>
+    </div>
+
+    <div id="div1" class="siblings">div (父)
+      <p>p</p>
+      <span>span</span>
+      <h2 id="h2">h2</h2>
+      <h3>h3</h3>
+      <p>p</p>
+    <h5 id="h5">h5</h5>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+{% block js %}
+
+
+<script>
+$(document).ready(function(){
+{#  $("#h2").siblings().css({"color":"red","border":"2px solid red"}); //h2的所有同胞#}
+{#    $("#h2").siblings('p').css({"color":"red","border":"2px solid red"}); //h2的所有p同胞#}
+{#    $("#h2").next().css({"color":"red","border":"2px solid red"});//下一个同胞元素：#}
+{#    $("#h2").nextAll().css({"color":"red","border":"2px solid red"});//<h2> 的所有跟随的同胞元素：#}
+   $("#h2").nextUntil('#h5').css({"color":"red","border":"2px solid red"});//<h2> 与<h5> 之间的元素
+});
+</script>
+
+
+
+
+{% endblock %}

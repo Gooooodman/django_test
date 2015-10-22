@@ -1,0 +1,77 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+    jQuery 效果 - 停止动画
+{% endblock %}
+
+
+{% block head %}
+
+    <style type="text/css">
+    #panel,#flip
+    {
+    padding:5px;
+    text-align:center;
+    background-color:#e5eecc;
+    border:solid 1px #c3c3c3;
+    }
+    #panel
+    {
+    padding:50px;
+    display:none;
+    }
+    </style>
+
+{% endblock %}
+
+{% block content %}
+
+<button id="stop">停止滑动</button>
+<div id="flip">点击这里，向下滑动面板</div>
+<div id="panel">Hello world!</div>
+
+
+  <button id="button" type="button">Hide</button>
+    <p id="p1">This is a paragraph with little content.</p>
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+
+$(document).ready(function() {
+      $("#flip").click(function(){
+        $("#panel").slideDown(5000);
+      });
+      $("#stop").click(function(){
+        $("#panel").stop();
+      });
+
+
+    //$("p").hide(1000);
+    //alert("The paragraph is now hidden");
+    //p 没有执行完 就执行了alert
+    //下面是执行完在执行
+    $("#button").click(function () {
+{#        $("#p1").hide(1000, function () {#}
+{#            alert("The paragraph is now hidden");#}
+{#        });#}
+
+
+     // 连接执行
+        $("#p1").css("color","red").slideUp(2000).slideDown(2000).hide(1000, function () {
+            alert("连接执行完成");
+        });
+
+
+    });
+
+});
+
+</script>
+
+
+{% endblock %}

@@ -31,7 +31,7 @@ def LoginUser(request):
         form = LoginUserForm(request,data=request.POST)
 
         if form.is_valid():
-            cd = form.cleaned_data
+            #cd = form.cleaned_data
             auth.login(request, form.get_user())
             return HttpResponseRedirect(request.POST['next'])
             #return HttpResponseRedirect(reverse('index'))
@@ -65,8 +65,9 @@ def ChangePassword(request):
         'form':form,
         'request':request,
     }
-
-    return render_to_response('UserManage/password.change.html',kwvars,RequestContext(request))
+    return render(request,'UserManage/password.change.html',kwvars)
+    #通用
+    #return render_to_response('UserManage/password.change.html',kwvars,RequestContext(request))
 
 @login_required
 @PermissionVerify()
