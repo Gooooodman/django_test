@@ -21,5 +21,9 @@ urlpatterns = patterns('sadmin.views',
     url(r'^jquery/ajax_list/$','assets.ajax_list',name="ajax_list"),
     url(r'^jquery/ajax_dict/$','assets.ajax_dict',name="ajax_dict"),
     url(r'^jquery/ajax_read_file/$','assets.ajax_read_file',name="ajax_read_file"),
+
+    #
+    url(r'^test/$','assets.test_yufa'),
+
 )
 

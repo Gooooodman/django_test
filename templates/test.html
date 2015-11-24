@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SyntaxHighlighter Build Test Page</title>
+	<script type="text/javascript" src="/static/scripts/shCore.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushBash.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushCSharp.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushCss.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushDelphi.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushDiff.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushGroovy.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushJava.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushPhp.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushPlain.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushPython.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushRuby.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushScala.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushSql.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushVb.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushXml.js"></script>
+	<link type="text/css" rel="stylesheet" href="/static/styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="/static/styles/shThemeDefault.css"/>
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = '/static/scripts/clipboard.swf';
+		SyntaxHighlighter.all();
+	</script>
+</head>
+
+<body >
+<h1>SyntaxHihglighter Test</h1>
+<p>This is a test file to insure that everything is working well.</p>
+
+<pre class="brush: c-sharp;">
+function test() : String
+{
+	return 10;
+}
+</pre>
+
+<pre class="brush: python;">
+def triangles():
+    b = [1]
+    while True:
+        yield b
+        b = [1] + [b[i] + b[i+1] for i in range(len(b)-1)] + [1]    
+
+n = 0
+for t in triangles():
+    print(t)
+    n = n + 1
+    if n == 5:
+        break
+</pre>
+
+
+</html>

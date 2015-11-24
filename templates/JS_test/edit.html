@@ -1,0 +1,71 @@
+{% extends "common/base.nav.html" %}
+
+
+{% block title %}
+ 语法高亮显示效果
+{% endblock %}
+
+{% block head_css %}
+	<script type="text/javascript" src="/static/scripts/shCore.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushBash.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushCpp.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushCSharp.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushCss.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushDelphi.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushDiff.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushGroovy.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushJava.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushJScript.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushPhp.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushPlain.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushPython.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushRuby.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushScala.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushSql.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushVb.js"></script>
+	<script type="text/javascript" src="/static/scripts/shBrushXml.js"></script>
+	<link type="text/css" rel="stylesheet" href="/static/styles/shCore.css"/>
+	<link type="text/css" rel="stylesheet" href="/static/styles/shThemeDefault.css"/>
+{% endblock %}
+
+
+{% block js %}
+
+	<script type="text/javascript">
+		SyntaxHighlighter.config.clipboardSwf = '/static/scripts/clipboard.swf';
+		SyntaxHighlighter.all();
+	</script>
+
+{% endblock %}
+
+
+
+
+{% block content %}
+<h1>语法高亮测试</h1>
+<p>c++</p>
+
+<pre class="brush: c-sharp;">
+function test() : String
+{
+	return 10;
+}
+</pre>
+
+<p>python</p>
+<pre class="brush: python;">
+def triangles():
+    b = [1]
+    while True:
+        yield b
+        b = [1] + [b[i] + b[i+1] for i in range(len(b)-1)] + [1]    
+
+n = 0
+for t in triangles():
+    print(t)
+    n = n + 1
+    if n == 5:
+        break
+</pre>
+
+{% endblock %}

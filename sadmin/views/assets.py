@@ -99,6 +99,12 @@ def jquery_3(request):
 
 
 
+def test_yufa(request):
+    tem = 'JS_test/edit.html'
+    return render(request,tem)
+
+
+
 
 def jquery_4(request):
     tem='JS_test/demo_test_post.asp'
